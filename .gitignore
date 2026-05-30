@@ -1,9 +1,0 @@
-# Update package
-*.zip
-*.xpi
-
-# Generated manifests
-manifest.json
-
-### VisualStudioCode ###
-.vscode/*
