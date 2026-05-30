@@ -6,12 +6,17 @@
   "default_locale": "en",
   "description": "Duplicate Tabs Closer",
   "icons": {
-    "48": "images/auto_close_32.png"
+    "32": "images/auto_close_32.png"
   },
   "browser_specific_settings": {
     "gecko": {
       "id": "duplicate-tabs-closer-tab-groups@caravan",
-      "strict_min_version": "128.0"
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
     }
   },
   "background": {

@@ -293,7 +293,7 @@ const titleSimilarity = (a, b) => {
     for (let i = 1; i <= m; i++) {
         const curr = [i];
         for (let j = 1; j <= n; j++) {
-            curr[j] = s1[i-1] === s2[j-1] ? prev[j-1] : 1 + Math.min(prev[j], curr[j-1], prev[j-1]);
+            curr[j] = s1[i - 1] === s2[j - 1] ? prev[j - 1] : 1 + Math.min(prev[j], curr[j - 1], prev[j - 1]);
         }
         prev.splice(0, prev.length, ...curr);
     }
@@ -315,22 +315,59 @@ const areSameArrays = (array1, array2) => {
 const escapeHTML = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;');
 
 // eslint-disable-next-line no-unused-vars
-const buildDuplicateTabRows = (duplicateTabs, activeWindowId) => {
-    let tableRows = "";
+const appendDuplicateTabRows = (tbody, duplicateTabs, activeWindowId) => {
     duplicateTabs.forEach(duplicateTab => {
-        const containerStyle = duplicateTab.containerColor
-            ? `style='text-decoration:underline; text-decoration-color: ${escapeHTML(duplicateTab.containerColor)};'`
-            : "";
-        const title = (duplicateTab.windowId === activeWindowId)
-            ? escapeHTML(duplicateTab.title)
-            : `<em>${escapeHTML(duplicateTab.title)}</em>`;
-        const tdTabIcon = `<td class='td-tab-icon'><img src='${escapeHTML(duplicateTab.icon)}' alt=''></td>`;
-        const whitelistBadge = duplicateTab.whitelisted
-            ? `<span class='whitelist-badge fa-solid fa-list-check' title='${chrome.i18n.getMessage("whitelistedTab")}'></span> `
-            : "";
-        const tdTabTitle = `<td class='td-tab-title' ${containerStyle} title='${escapeHTML(duplicateTab.url)}'>${whitelistBadge}${title}</td>`;
-        const tdCloseButton = "<td class='td-close-button'><button type='button' class='btn-tab-close' aria-label='Close'>&times;</button></td>";
-        tableRows += `<tr tabId='${parseInt(duplicateTab.id, 10)}' windowId='${parseInt(duplicateTab.windowId, 10)}'>${tdTabIcon}${tdTabTitle}${tdCloseButton}</tr>`;
+        const tr = document.createElement("tr");
+        tr.setAttribute("tabId", String(parseInt(duplicateTab.id, 10)));
+        tr.setAttribute("windowId", String(parseInt(duplicateTab.windowId, 10)));
+
+        const tdTabIcon = document.createElement("td");
+        tdTabIcon.className = "td-tab-icon";
+
+        const img = document.createElement("img");
+        img.src = duplicateTab.icon || "../images/default-favicon.png";
+        img.alt = "";
+        tdTabIcon.appendChild(img);
+
+        const tdTabTitle = document.createElement("td");
+        tdTabTitle.className = "td-tab-title";
+        tdTabTitle.title = duplicateTab.url || "";
+
+        if (duplicateTab.containerColor) {
+            tdTabTitle.style.textDecoration = "underline";
+            tdTabTitle.style.textDecorationColor = duplicateTab.containerColor;
+        }
+
+        if (duplicateTab.whitelisted) {
+            const badge = document.createElement("span");
+            badge.className = "whitelist-badge fa-solid fa-list-check";
+            badge.title = chrome.i18n.getMessage("whitelistedTab");
+            tdTabTitle.appendChild(badge);
+            tdTabTitle.appendChild(document.createTextNode(" "));
+        }
+
+        if (duplicateTab.windowId === activeWindowId) {
+            tdTabTitle.appendChild(document.createTextNode(duplicateTab.title || ""));
+        } else {
+            const em = document.createElement("em");
+            em.textContent = duplicateTab.title || "";
+            tdTabTitle.appendChild(em);
+        }
+
+        const tdCloseButton = document.createElement("td");
+        tdCloseButton.className = "td-close-button";
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "btn-tab-close";
+        button.setAttribute("aria-label", "Close");
+        button.textContent = "×";
+        tdCloseButton.appendChild(button);
+
+        tr.appendChild(tdTabIcon);
+        tr.appendChild(tdTabTitle);
+        tr.appendChild(tdCloseButton);
+
+        tbody.appendChild(tr);
     });
-    return tableRows;
 };

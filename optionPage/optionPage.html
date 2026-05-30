@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="../ext_lib/bootstrap-5.3.3-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../ext_lib/font-awesome-6.7/css/all.min.css">
   <link rel="stylesheet" href="optionPage.css">
-  <script src="../ext_lib/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
   <script src="../helper.js"></script>
   <script src="optionPage.js"></script>
 </head>
@@ -22,7 +21,8 @@
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item list-group-item-header">
-            <span class="list-group-item-title list-group-expanded" i18n-content="onDuplicateTabDetected" id="onDuplicateTabDetectedTitle"></span>
+            <span class="list-group-item-title list-group-expanded" i18n-content="onDuplicateTabDetected"
+              id="onDuplicateTabDetectedTitle"></span>
           </li>
           <li class="list-group-item">
             <div class="form-group" id="onDuplicateTabDetectedBody">
@@ -45,7 +45,8 @@
             </div>
           </li>
           <li class="list-group-item list-group-item-header">
-            <span class="list-group-item-title list-group-expanded" i18n-content="tabPriority" id="tabPriorityTitle"></span>
+            <span class="list-group-item-title list-group-expanded" i18n-content="tabPriority"
+              id="tabPriorityTitle"></span>
           </li>
           <li class="list-group-item">
             <div class="form-group" id="tabPriorityBody">
@@ -76,7 +77,8 @@
             </div>
           </li>
           <li class="list-group-item list-group-item-header">
-            <span class="list-group-item-title list-group-expanded" i18n-content="matchingRules" id="matchingRulesTitle"></span>
+            <span class="list-group-item-title list-group-expanded" i18n-content="matchingRules"
+              id="matchingRulesTitle"></span>
           </li>
           <li class="list-group-item">
             <div class="form-group" id="matchingRulesBody">
@@ -142,7 +144,8 @@
               </div>
               <div class="checkboxes checkboxes-threshold">
                 <label>
-                  <input type="number" id="titleSimilarityThreshold" min="1" max="100" class="form-control-xs" disabled />
+                  <input type="number" id="titleSimilarityThreshold" min="1" max="100" class="form-control-xs"
+                    disabled />
                   <span i18n-content="titleSimilarityThreshold"></span>
                 </label>
               </div>
@@ -178,24 +181,25 @@
             </div>
           </li>
           <li class="list-group-item list-group-item-header">
-            <span class="list-group-item-title list-group-expanded" i18n-content="customization" id="customization"></span>
+            <span class="list-group-item-title list-group-expanded" i18n-content="customization"
+              id="customization"></span>
           </li>
           <li class="list-group-item">
             <div class="form-group" id="customizationBody">
               <div class="checkboxes">
                 <label for="theme" class="titleLabel" i18n-content="theme"></label>
                 <select class="form-select form-control-xs" id="theme" name="theme">
-                  <option value="light"    i18n-content="themeLight"></option>
-                  <option value="sage"     i18n-content="themeSage"></option>
-                  <option value="rose"     i18n-content="themeRose"></option>
-                  <option value="amber"    i18n-content="themeAmber"></option>
-                  <option value="slate"    i18n-content="themeSlate"></option>
-                  <option value="violet"   i18n-content="themeViolet"></option>
-                  <option value="ocean"    i18n-content="themeOcean"></option>
+                  <option value="light" i18n-content="themeLight"></option>
+                  <option value="sage" i18n-content="themeSage"></option>
+                  <option value="rose" i18n-content="themeRose"></option>
+                  <option value="amber" i18n-content="themeAmber"></option>
+                  <option value="slate" i18n-content="themeSlate"></option>
+                  <option value="violet" i18n-content="themeViolet"></option>
+                  <option value="ocean" i18n-content="themeOcean"></option>
                   <option value="charcoal" i18n-content="themeCharcoal"></option>
-                  <option value="purple"   i18n-content="themePurple"></option>
-                  <option value="teal"     i18n-content="themeTeal"></option>
-                  <option value="oled"     i18n-content="themeOled"></option>
+                  <option value="purple" i18n-content="themePurple"></option>
+                  <option value="teal" i18n-content="themeTeal"></option>
+                  <option value="oled" i18n-content="themeOled"></option>
                 </select>
               </div>
               <div class="checkboxes">
@@ -212,12 +216,16 @@
               </div>
               <table id="color-container">
                 <tr>
-                  <td><input class="form-control badgeColor" type="color" value="#563d7c" id="badgeColorDuplicateTabs"></td>
-                  <td><label class="label-badgeColor" i18n-content="badgeColorDuplicateTabs" for="badgeColorDuplicateTabs"></label></td>
+                  <td><input class="form-control badgeColor" type="color" value="#563d7c" id="badgeColorDuplicateTabs">
+                  </td>
+                  <td><label class="label-badgeColor" i18n-content="badgeColorDuplicateTabs"
+                      for="badgeColorDuplicateTabs"></label></td>
                 </tr>
                 <tr>
-                  <td><input class="form-control badgeColor" type="color" value="#563d7c" id="badgeColorNoDuplicateTabs"></td>
-                  <td><label class="label-badgeColor" i18n-content="badgeColorNoDuplicateTabs" for="badgeColorNoDuplicateTabs"></label></td>
+                  <td><input class="form-control badgeColor" type="color" value="#563d7c"
+                      id="badgeColorNoDuplicateTabs"></td>
+                  <td><label class="label-badgeColor" i18n-content="badgeColorNoDuplicateTabs"
+                      for="badgeColorNoDuplicateTabs"></label></td>
                 </tr>
               </table>
               <div class="checkboxes">
@@ -245,7 +253,8 @@
         </div>
       </div>
       <div class="table-footer d-flex">
-        <button type="button" class="btn btn-xs btn-close-tabs disabled" id="closeDuplicateTabsBtn" aria-disabled="true" i18n-content="closeAllDuplicateTabs"></button>
+        <button type="button" class="btn btn-xs btn-close-tabs disabled" id="closeDuplicateTabsBtn" aria-disabled="true"
+          i18n-content="closeAllDuplicateTabs"></button>
       </div>
     </div>
 

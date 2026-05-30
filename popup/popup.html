@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../ext_lib/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../ext_lib/font-awesome-6.7/css/all.min.css">
     <link rel="stylesheet" href="popup.css">
-    <script src="../ext_lib/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../helper.js"></script>
     <script src="popup.js"></script>
 </head>
@@ -30,8 +29,10 @@
             <div class="card-body" id="optionsBody">
                 <ul class="list-group list-group-flush">
                     <div class="list-group-form" id="onDuplicateTabDetectedGroup">
-                        <li class="list-group-item list-group-item-header d-flex justify-content-between align-items-center">
-                            <span class="list-group-item-title" i18n-content="onDuplicateTabDetected" id="onDuplicateTabDetectedTitle"></span>
+                        <li
+                            class="list-group-item list-group-item-header d-flex justify-content-between align-items-center">
+                            <span class="list-group-item-title" i18n-content="onDuplicateTabDetected"
+                                id="onDuplicateTabDetectedTitle"></span>
                             <input type="checkbox" class="checkbox-fa" id="onDuplicateTabDetectedPinned" />
                             <label for="onDuplicateTabDetectedPinned" class="checkbox-fa-label">
                                 <span class="fa-solid fa-thumbtack"></span>
@@ -39,13 +40,16 @@
                         </li>
                         <li class="list-group-item">
                             <div class="form-group" id="onDuplicateTabDetectedBody">
-                                <select class="form-select form-control-xs" id="onDuplicateTabDetected" name="onDuplicateTabDetected">
+                                <select class="form-select form-control-xs" id="onDuplicateTabDetected"
+                                    name="onDuplicateTabDetected">
                                     <option value="N" i18n-content="doNothing"></option>
                                     <option value="A" i18n-content="autoCloseTab"></option>
                                 </select>
                                 <div id="onRemainingTabGroup">
-                                    <label class="titleLabel" for="onRemainingTab" i18n-content="onRemainingTab"></label>
-                                    <select class="form-select form-control-xs" id="onRemainingTab" name="onRemainingTab">
+                                    <label class="titleLabel" for="onRemainingTab"
+                                        i18n-content="onRemainingTab"></label>
+                                    <select class="form-select form-control-xs" id="onRemainingTab"
+                                        name="onRemainingTab">
                                         <option value="N" i18n-content="doNothing"></option>
                                         <option value="A" i18n-content="activateKeptTab"></option>
                                         <option value="B" i18n-content="defaultTabBehavior"></option>
@@ -55,7 +59,8 @@
                         </li>
                     </div>
                     <div class="list-group-form" id="tabPriorityGroup">
-                        <li class="list-group-item list-group-item-header d-flex justify-content-between align-items-center">
+                        <li
+                            class="list-group-item list-group-item-header d-flex justify-content-between align-items-center">
                             <span class="list-group-item-title" i18n-content="tabPriority" id="tabPriorityTitle"></span>
                             <input type="checkbox" class="checkbox-fa" id="tabPriorityPinned" />
                             <label for="tabPriorityPinned" class="checkbox-fa-label">
@@ -64,7 +69,8 @@
                         </li>
                         <li class="list-group-item">
                             <div class="form-group" id="tabPriorityBody">
-                                <select class="form-select form-control-xs" id="keepTabBasedOnAge" name="keepTabBasedOnAge">
+                                <select class="form-select form-control-xs" id="keepTabBasedOnAge"
+                                    name="keepTabBasedOnAge">
                                     <option value="N" i18n-content="keepNewerTab"></option>
                                     <option value="O" i18n-content="keepOlderTab"></option>
                                     <option value="R" i18n-content="keepReloadOlderTab"></option>
@@ -86,8 +92,10 @@
                         </li>
                     </div>
                     <div class="list-group-form" id="matchingRulesGroup">
-                        <li class="list-group-item list-group-item-header d-flex justify-content-between align-items-center">
-                            <span class="list-group-item-title" i18n-content="matchingRules" id="matchingRulesTitle"></span>
+                        <li
+                            class="list-group-item list-group-item-header d-flex justify-content-between align-items-center">
+                            <span class="list-group-item-title" i18n-content="matchingRules"
+                                id="matchingRulesTitle"></span>
                             <input type="checkbox" class="checkbox-fa" id="matchingRulesPinned" />
                             <label for="matchingRulesPinned" class="checkbox-fa-label">
                                 <span class="fa-solid fa-thumbtack"></span>
@@ -133,23 +141,27 @@
                                 </div>
                                 <div class="checkboxes checkboxes-threshold">
                                     <label>
-                                        <input type="number" id="titleSimilarityThreshold" min="1" max="100" class="form-control-xs" disabled />
+                                        <input type="number" id="titleSimilarityThreshold" min="1" max="100"
+                                            class="form-control-xs" disabled />
                                         <span i18n-content="titleSimilarityThreshold"></span>
                                     </label>
                                 </div>
                                 <div class="checkboxes checkboxes-regex-label">
                                     <label for="urlRegexRules"><span i18n-content="urlRegexRules"></span></label>
-                                    <textarea id="urlRegexRules" class="form-control rules-textarea" rows="3"></textarea>
+                                    <textarea id="urlRegexRules" class="form-control rules-textarea"
+                                        rows="3"></textarea>
                                 </div>
                                 <div class="checkboxes checkboxes-regex-label">
                                     <label for="titleRegexRules"><span i18n-content="titleRegexRules"></span></label>
-                                    <textarea id="titleRegexRules" class="form-control rules-textarea" rows="3"></textarea>
+                                    <textarea id="titleRegexRules" class="form-control rules-textarea"
+                                        rows="3"></textarea>
                                 </div>
                             </div>
                         </li>
                     </div>
                     <div class="list-group-form" id="scopeGroup">
-                        <li class="list-group-item list-group-item-header d-flex justify-content-between align-items-center">
+                        <li
+                            class="list-group-item list-group-item-header d-flex justify-content-between align-items-center">
                             <span class="list-group-item-title" i18n-content="scope" id="scopeTitle"></span>
                             <input type="checkbox" class="checkbox-fa" id="scopePinned" />
                             <label for="scopePinned" class="checkbox-fa-label">
@@ -159,8 +171,10 @@
                         <li class="list-group-item">
                             <div class="form-group" id="scopeBody">
                                 <select class="form-select form-control-xs" id="scope" name="scope">
-                                    <option class="containerItem" value="CC" i18n-content="containerActivewindow"></option>
-                                    <option class="containerItem" value="CA" i18n-content="containerAllwindows"></option>
+                                    <option class="containerItem" value="CC" i18n-content="containerActivewindow">
+                                    </option>
+                                    <option class="containerItem" value="CA" i18n-content="containerAllwindows">
+                                    </option>
                                     <option value="C" i18n-content="activeWindow"></option>
                                     <option value="A" i18n-content="allWindows"></option>
                                 </select>
@@ -184,7 +198,8 @@
                 </div>
             </div>
             <div class="table-footer d-flex">
-                <button type="button" class="btn btn-xs btn-close-tabs disabled" id="closeDuplicateTabsBtn" aria-disabled="true" i18n-content="closeAllDuplicateTabs"></button>
+                <button type="button" class="btn btn-xs btn-close-tabs disabled" id="closeDuplicateTabsBtn"
+                    aria-disabled="true" i18n-content="closeAllDuplicateTabs"></button>
             </div>
         </div>
 
