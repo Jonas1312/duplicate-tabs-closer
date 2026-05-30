@@ -39,7 +39,7 @@ const handleMessage = (message, sender, response) => {
     }
 };
 
-// chrome.runtime.onMessage.addListener(handleMessage);
+chrome.runtime.onMessage.addListener(handleMessage);
 // if (chrome.runtime.onMessageExternal) {
 //     chrome.runtime.onMessageExternal.addListener(handleMessage);
 // }
