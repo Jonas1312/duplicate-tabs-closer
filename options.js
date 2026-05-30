@@ -111,6 +111,9 @@ const defaultOptions = {
     },
     theme: {
         value: "light"
+    },
+    keepGroupedTab: {
+        value: true
     }
 };
 
@@ -192,6 +195,7 @@ const setOptions = (storedOptions) => {
     options.showBadgeIfNoDuplicateTabs = storedOptions.showBadgeIfNoDuplicateTabs.value;
     options.openPopupOnDuplicateDetected = storedOptions.openPopupOnDuplicateDetected.value;
     options.theme = storedOptions.theme.value;
+    options.keepGroupedTab = storedOptions.keepGroupedTab.value;
 };
 
 const environment = {
@@ -222,7 +226,8 @@ const isPanelOptionOpen = async () => {
 
 const escapeRegexChar = (ch) => ch.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
 
-const whiteListToPattern = (whiteList) => {    const whiteListPatterns = new Set();
+const whiteListToPattern = (whiteList) => {
+    const whiteListPatterns = new Set();
     const whiteListLines = whiteList.split("\n").map(line => line.trim()).filter(line => line.length > 0);
     whiteListLines.forEach(whiteListLine => {
         const length = whiteListLine.length;

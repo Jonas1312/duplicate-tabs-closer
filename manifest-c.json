@@ -32,10 +32,6 @@
       "description": "Toggle between auto-close and manual mode"
     }
   },
-  "externally_connectable": {
-    "_comment": "DEV ONLY — allows dtc-test companion extension to send messages. Remove or restrict to a specific extension ID before publishing to the Chrome Web Store.",
-    "ids": ["*"]
-  },
   "options_ui": {
     "page": "optionPage/optionPage.html",
     "open_in_tab": true

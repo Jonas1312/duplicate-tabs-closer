@@ -1,0 +1,85 @@
+name: Build Firefox XPI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-xpi:
+    name: Build Firefox extension package
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Prepare Firefox package source
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          rm -rf dist
+          mkdir -p dist/firefox-src
+
+          cp manifest-f.json dist/firefox-src/manifest.json
+
+          cp \
+            background.js \
+            badge.js \
+            helper.js \
+            LICENSE \
+            messageListener.js \
+            options.js \
+            README.md \
+            tabsInfo.js \
+            urlUtils.js \
+            worker.js \
+            dist/firefox-src/
+
+          cp -R _locales images optionPage popup ext_lib dist/firefox-src/
+
+      - name: Validate package contents
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f dist/firefox-src/manifest.json
+          test -f dist/firefox-src/background.js
+          test -d dist/firefox-src/_locales
+          test -d dist/firefox-src/images
+          test -d dist/firefox-src/popup
+          test -d dist/firefox-src/optionPage
+
+          test ! -d dist/firefox-src/.git
+          test ! -d dist/firefox-src/.github
+          test ! -d dist/firefox-src/build
+          test ! -f dist/firefox-src/manifest-c.json
+          test ! -f dist/firefox-src/manifest-f.json
+
+      - name: Build XPI
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cd dist/firefox-src
+          zip -r ../duplicate-tabs-closer-firefox.xpi .
+
+      - name: Upload XPI artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: duplicate-tabs-closer-firefox-xpi
+          path: dist/duplicate-tabs-closer-firefox.xpi
+          if-no-files-found: error
+          retention-days: 30

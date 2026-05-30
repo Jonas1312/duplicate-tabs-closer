@@ -47,6 +47,10 @@
     "message": "Зберегти закріплену вкладку",
     "description": "Keep pinned tab"
   },
+  "keepGroupedTab": {
+    "message": "Prefer keeping tabs that are in a group",
+    "description": "When closing duplicates, keep a grouped tab over an ungrouped duplicate"
+  },
   "onRemainingTab": {
     "message": "Вкладку, що залишилася...",
     "description": "On remaining tab"
@@ -149,19 +153,19 @@
   },
   "noDuplicateTabs": {
     "message": "Вкладок-дублікатів наразі нема",
-    "description": "No duplicate tabs"    
+    "description": "No duplicate tabs"
   },
   "closePopup": {
     "message": "Закрити спливаюче вікно після закриття дублікатів вкладок",
     "description": "Close popup panel after closing duplicate tabs"
   },
   "moreOptions": {
-    "message":  "Більше налаштувань...",
-    "description":  "More options..."
+    "message": "Більше налаштувань...",
+    "description": "More options..."
   },
   "shrunkMode": {
-    "message":  "Компактний режим:\nПри активації приховує незакріплені параметри.",
-    "description":  "Shrunk mode\nWhen activated, hide unpinned options."
+    "message": "Компактний режим:\nПри активації приховує незакріплені параметри.",
+    "description": "Shrunk mode\nWhen activated, hide unpinned options."
   },
   "theme": {
     "message": "Тема",

@@ -44,6 +44,23 @@ const getHttpsTabId = (observedTab, observedTabUrl, openedTab) => {
     return null;
 };
 
+const isGroupedTab = tab =>
+    typeof tab.groupId === "number" && tab.groupId !== -1;
+
+const getGroupedTabId = (tab1, tab2) => {
+    if (options.keepGroupedTab) {
+        const tab1Grouped = isGroupedTab(tab1);
+        const tab2Grouped = isGroupedTab(tab2);
+
+        if (tab1Grouped) {
+            return tab2Grouped ? null : tab1.id;
+        } else {
+            return tab2Grouped ? tab2.id : null;
+        }
+    }
+    return null;
+};
+
 const getPinnedTabId = (tab1, tab2) => {
     if (options.keepPinnedTab) {
         if (tab1.pinned) {
@@ -86,11 +103,14 @@ const getCloseInfo = (details) => {
     const activeWindowId = details.activeWindowId;
     let retainedTabId = getPinnedTabId(observedTab, openedTab);
     if (!retainedTabId) {
-        retainedTabId = getHttpsTabId(observedTab, observedTabUrl, openedTab);
+        retainedTabId = getGroupedTabId(observedTab, openedTab);
         if (!retainedTabId) {
-            retainedTabId = getLastUpdatedTabId(observedTab, openedTab);
-            if (activeWindowId) {
-                retainedTabId = getFocusedTab(observedTab, openedTab, activeWindowId, retainedTabId);
+            retainedTabId = getHttpsTabId(observedTab, observedTabUrl, openedTab);
+            if (!retainedTabId) {
+                retainedTabId = getLastUpdatedTabId(observedTab, openedTab);
+                if (activeWindowId) {
+                    retainedTabId = getFocusedTab(observedTab, openedTab, activeWindowId, retainedTabId);
+                }
             }
         }
     }
