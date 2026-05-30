@@ -148,9 +148,23 @@ const searchForDuplicateTabsToClose = async (observedTab, queryComplete, loading
         return;
     }
     const queryInfo = {};
-    if (isValidURL(observedTabUrl) && options.urlRegexRules.length === 0 && options.titleRegexRules.length === 0) queryInfo.url = getMatchPatternURL(observedTabUrl);
-    queryInfo.windowId = options.searchInAllWindows ? null : observedWindowsId;
-    if (environment.isFirefox) queryInfo.cookieStoreId = options.searchPerContainer ? observedTab.cookieStoreId : null;
+
+    if (
+        isValidURL(observedTabUrl)
+        && options.urlRegexRules.length === 0
+        && options.titleRegexRules.length === 0
+    ) {
+        queryInfo.url = getMatchPatternURL(observedTabUrl);
+    }
+
+    if (!options.searchInAllWindows) {
+        queryInfo.windowId = observedWindowsId;
+    }
+
+    if (environment.isFirefox && options.searchPerContainer) {
+        queryInfo.cookieStoreId = observedTab.cookieStoreId;
+    }
+
     const openedTabs = await getTabs(queryInfo);
     if (!openedTabs || openedTabs.length <= 1) return;
     const matchingObservedTabUrl = getMatchingURL(observedTabUrl);
