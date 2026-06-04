@@ -15,10 +15,6 @@
     "message": "Закрити вкладку автоматично",
     "description": "Close tab automatically"
   },
-  "showPanel": {
-    "message": "Показати панель",
-    "description": "Show panel"
-  },
   "openPopupOnDuplicateDetected": {
     "message": "Відкривати панель при виявленні дубліката",
     "description": "Open popup panel when a new duplicate tab is detected"
@@ -134,6 +130,22 @@
   "whiteList": {
     "message": "Дозволені URL",
     "description": "Whitelisted URLs"
+  },
+  "pauseMonitoring": {
+    "message": "Призупинити моніторинг",
+    "description": "Pause duplicate tab monitoring"
+  },
+  "resumeMonitoring": {
+    "message": "Відновити моніторинг",
+    "description": "Resume duplicate tab monitoring"
+  },
+  "monitoringPaused": {
+    "message": "Моніторинг призупинено",
+    "description": "Shown in the duplicate tabs list when monitoring is paused"
+  },
+  "whitelistedTab": {
+    "message": "У списку дозволених — не закривається автоматично",
+    "description": "Tooltip shown on duplicate tabs that match the whitelist"
   },
   "customization": {
     "message": "Налаштування",

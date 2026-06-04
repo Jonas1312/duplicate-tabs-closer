@@ -17,6 +17,24 @@ const initialize = async () => {
   await Promise.all([setPanelOptions(), saveActiveWindowId()]);
   requestGetDuplicateTabs();
   localizePopup(document.documentElement);
+  const sessionData = await chrome.storage.session.get('monitoringPaused');
+  applyPausedState(sessionData.monitoringPaused || false);
+};
+
+const applyPausedState = (paused) => {
+  const sel = document.getElementById("onDuplicateTabDetected");
+  if (sel) sel.disabled = paused;
+  const btn = document.getElementById("pauseMonitorBtn");
+  if (!btn) return;
+  const icon = btn.querySelector("span");
+  btn.classList.toggle("paused", paused);
+  if (paused) {
+    icon.className = "fa-solid fa-play fa-lg";
+    btn.setAttribute("aria-label", chrome.i18n.getMessage("resumeMonitoring"));
+  } else {
+    icon.className = "fa-solid fa-pause fa-lg";
+    btn.setAttribute("aria-label", chrome.i18n.getMessage("pauseMonitoring"));
+  }
 };
 
 const getHighlightBounds = (textarea) => {
@@ -143,6 +161,14 @@ const loadPopupEvents = () => {
     });
   }
 
+  /* Pause/resume monitoring */
+  const pauseBtn = document.getElementById("pauseMonitorBtn");
+  if (pauseBtn) pauseBtn.addEventListener("click", () => {
+    sendMessage("toggleMonitorPause").then(resp => {
+      if (resp) applyPausedState(resp.paused);
+    });
+  });
+
   /* Close all */
   const closeBtn = document.getElementById("closeDuplicateTabsBtn");
   if (closeBtn) closeBtn.addEventListener("click", function () {
@@ -179,7 +205,7 @@ const updateIgnorePathPartDependents = (checked) => {
 };
 
 const setDuplicateTabsTable = (duplicateTabs) => {
-  if (areSameArrays(duplicateTabs, lastDuplicateTabs)) return;
+  if (duplicateTabs !== null && areSameArrays(duplicateTabs, lastDuplicateTabs)) return;
   const isUpdate = panelInitialized;
   panelInitialized = true;
   lastDuplicateTabs = duplicateTabs ? Array.from(duplicateTabs) : null;
@@ -187,26 +213,29 @@ const setDuplicateTabsTable = (duplicateTabs) => {
   tbody.replaceChildren();
   const closeBtn = document.getElementById("closeDuplicateTabsBtn");
   if (duplicateTabs) {
-    appendDuplicateTabRows(tbody, duplicateTabs, activeWindowId);
+    tbody.appendChild(buildDuplicateTabRows(duplicateTabs, activeWindowId));
     closeBtn.classList.toggle("disabled", false);
     closeBtn.setAttribute("aria-disabled", "false");
   }
   else {
-    const tr = document.createElement("tr");
-    const td = document.createElement("td");
-    td.className = "td-tab-text";
-    td.colSpan = 3;
-
-    const em = document.createElement("em");
-    em.textContent = `${chrome.i18n.getMessage("noDuplicateTabs")}.`;
-
-    td.appendChild(em);
-    tr.appendChild(td);
-    tbody.appendChild(tr);
+    chrome.storage.session.get('monitoringPaused').then(data => {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.className = "td-tab-text";
+      td.colSpan = 3;
+      const em = document.createElement("em");
+      em.textContent = data.monitoringPaused
+        ? chrome.i18n.getMessage("monitoringPaused")
+        : chrome.i18n.getMessage("noDuplicateTabs") + ".";
+      td.appendChild(em);
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+      resizeDuplicateTabsPanel(isUpdate);
+    });
     closeBtn.classList.toggle("disabled", true);
     closeBtn.setAttribute("aria-disabled", "true");
   }
-  resizeDuplicateTabsPanel(isUpdate);
+  if (duplicateTabs) resizeDuplicateTabsPanel(isUpdate);
 };
 
 const resizeDuplicateTabsPanel = (refresh) => {

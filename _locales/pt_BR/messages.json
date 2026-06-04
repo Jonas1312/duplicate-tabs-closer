@@ -1,182 +1,182 @@
 {
   "options": {
-    "message": "选项",
+    "message": "Opções",
     "description": "Options"
   },
   "onDuplicateTabDetected": {
-    "message": "检测到重复标签页时",
+    "message": "Na aba duplicada detectada",
     "description": "On duplicate tab detected"
   },
   "doNothing": {
-    "message": "无操作",
+    "message": "Não fazer nada",
     "description": "Do nothing"
   },
   "autoCloseTab": {
-    "message": "自动关闭标签页",
+    "message": "Fechar aba automaticamente",
     "description": "Close tab automatically"
   },
   "openPopupOnDuplicateDetected": {
-    "message": "检测到重复标签页时打开弹出面板",
+    "message": "Abrir popup ao detectar aba duplicada",
     "description": "Open popup panel when a new duplicate tab is detected"
   },
   "tabPriority": {
-    "message": "优先级",
+    "message": "Prioridade",
     "description": "Priority"
   },
   "keepNewerTab": {
-    "message": "保留新的标签页",
+    "message": "Manter a aba mais recente",
     "description": "Keep newer tab"
   },
   "keepOlderTab": {
-    "message": "保留旧的标签页",
+    "message": "Manter a aba mais antiga",
     "description": "Keep older tab"
   },
   "keepReloadOlderTab": {
-    "message": "保留并刷新旧的标签页",
+    "message": "Manter e recarregar a aba mais antiga",
     "description": "Keep and reload older tab"
   },
   "keeptabwithHttps": {
-    "message": "保留 HTTPS 的标签页",
-    "description": "Keep tab with HTTPS"
+    "message": "Mantenha a aba com https",
+    "description": "Keep tab with https"
   },
   "keepPinnedTab": {
-    "message": "保留固定的标签页",
+    "message": "Manter a aba fixada",
     "description": "Keep pinned tab"
   },
   "onRemainingTab": {
-    "message": "剩余标签页",
+    "message": "Na aba restante",
     "description": "On remaining tab"
   },
   "activateKeptTab": {
-    "message": "激活",
+    "message": "Ativar",
     "description": "Activate"
   },
   "defaultTabBehavior": {
-    "message": "默认标签页行为",
+    "message": "Comportamento da aba padrão",
     "description": "Default tab behaviour"
   },
   "matchingRules": {
-    "message": "匹配规则",
+    "message": "Regras de correspondência",
     "description": "Matching rules"
   },
   "ignoreHashPart": {
-    "message": "忽略标签页 URL 中的井字部分",
+    "message": "Ignorar a parte hash no URL",
     "description": "Ignore hash part in URL"
   },
   "ignoreSearchPart": {
-    "message": "忽略标签页 URL 中的问号部分",
+    "message": "Ignorar a parte da pesquisa no URL",
     "description": "Ignore search part in URL"
   },
   "ignorePathPart": {
-    "message": "忽略标签页 URL 中的路径部分",
+    "message": "Ignorar parte do caminho no URL",
     "description": "Ignore path part in URL"
   },
   "ignore3w": {
-    "message": "忽略 URL 域名中的 'www'",
+    "message": "Ignorar 'www' no nome de domínio do URL",
     "description": "Ignore 'www' in URL domain name"
   },
   "caseInsensitive": {
-    "message": "忽略 URL 中的大小写",
+    "message": "Ignorar maiúsculas e minúsculas no URL",
     "description": "Ignore case in URL"
   },
   "compareWithTitle": {
-    "message": "比较依据标签页标题",
+    "message": "Comparar com o título",
     "description": "Compare with title"
   },
   "titleSimilarityThreshold": {
-    "message": "% 标题相似度",
+    "message": "% similaridade de título",
     "description": "Minimum title similarity to consider tabs as duplicates"
   },
   "urlRegexRules": {
-    "message": "URL 匹配规则",
+    "message": "Regras de padrão de URL",
     "description": "URL pattern rules"
   },
   "titleRegexRules": {
-    "message": "标题匹配规则",
+    "message": "Regras de padrão de título",
     "description": "Title pattern rules"
   },
   "duplicatetabs": {
-    "message": "重复标签页",
+    "message": "Abas duplicadas",
     "description": "Duplicate tabs"
   },
   "scope": {
-    "message": "范围",
+    "message": "Escopo",
     "description": "Scope"
   },
   "activewindow": {
-    "message": "活动窗口",
+    "message": "Janela ativa",
     "description": "Active window"
   },
   "allwindows": {
-    "message": "所有窗口",
+    "message": "Todas as janelas",
     "description": "All windows"
   },
   "containerActivewindow": {
-    "message": "当前窗口中的容器",
+    "message": "Contêiner na janela ativa",
     "description": "Container in active window"
   },
   "containerAllwindows": {
-    "message": "所有窗口中的容器",
+    "message": "Contêiner em todas as janelas",
     "description": "Container in all windows"
   },
   "closeAllDuplicateTabs": {
-    "message": "关闭所有重复的标签页",
+    "message": "Fechar todas",
     "description": "Close all"
   },
   "whiteList": {
-    "message": "白名单 URL",
+    "message": "URLs na lista de permissões",
     "description": "Whitelisted URLs"
   },
   "pauseMonitoring": {
-    "message": "暂停监控",
+    "message": "Pausar monitoramento",
     "description": "Pause duplicate tab monitoring"
   },
   "resumeMonitoring": {
-    "message": "恢复监控",
+    "message": "Retomar monitoramento",
     "description": "Resume duplicate tab monitoring"
   },
   "monitoringPaused": {
-    "message": "监控已暂停",
+    "message": "Monitoramento pausado",
     "description": "Shown in the duplicate tabs list when monitoring is paused"
   },
   "whitelistedTab": {
-    "message": "已加入白名单 - 不会自动关闭",
+    "message": "Na lista de permissões - não fechada automaticamente",
     "description": "Tooltip shown on duplicate tabs that match the whitelist"
   },
   "customization": {
-    "message": "定制",
+    "message": "Customização",
     "description": "Customization"
   },
   "badgeColorDuplicateTabs": {
-    "message": "有重复标签页时数字背景色",
+    "message": "Cor do emblema para abas duplicadas",
     "description": "Badge color for duplicate tabs"
   },
   "badgeColorNoDuplicateTabs": {
-    "message": "无重复标签页时数字背景色",
-    "description": "Badge color for no duplicate tabs"
+    "message": "Cor do emblema para abas não duplicadas",
+    "description": "Badge color for no duplicate tab"
   },
   "showBadgeIfNoDuplicateTabs": {
-    "message": "无重复标签页时显示角标",
-    "description": "Show badge if no duplicate tabs"
+    "message": "Exibir emblema se não houver abas duplicadas",
+    "description": "Show badge if no duplicate tab"
   },
   "noDuplicateTabs": {
-    "message": "没有重复的标签页",
+    "message": "Sem abas duplicadas",
     "description": "No duplicate tabs"
   },
   "closePopup": {
-    "message": "关闭重复标签页后自动关闭弹出面板",
+    "message": "Fechar o painel pop-up após fechar as abas duplicadas",
     "description": "Close popup panel after closing duplicate tabs"
   },
   "moreOptions": {
-    "message": "更多选项...",
+    "message": "Mais opções...",
     "description": "More options..."
   },
   "shrunkMode": {
-    "message": "精简模式：\n启用时，隐藏未固定的选项。",
+    "message": "Shrunk mode:\nQuando ativado, oculta as opções não fixadas.",
     "description": "Shrunk mode\nWhen activated, hide unpinned options."
   },
   "theme": {
-    "message": "主题",
+    "message": "Tema",
     "description": "Theme selector"
   },
   "themeLight": {

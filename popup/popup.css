@@ -237,6 +237,23 @@ body {
     line-height: 1;
 }
 
+#pauseMonitorBtn {
+    margin-right: 8px;
+}
+
+#pauseMonitorBtn:hover {
+    transform: scale(1.2);
+}
+
+#pauseMonitorBtn.paused {
+    color: #f59e0b;
+}
+
+#pauseMonitorBtn.paused:hover {
+    color: #fbbf24;
+    transform: scale(1.2);
+}
+
 .fa-gear:hover {
     cursor: pointer;
     transform: scale(1.2);
@@ -245,8 +262,9 @@ body {
 .card-body {
     padding: 1px 0px;
     max-height: 400px;
-    overflow: auto;
+    overflow: scroll;
     scrollbar-width: thin;
+    margin-right: -8px;
 }
 
 #duplicateTabsCard .card-body {

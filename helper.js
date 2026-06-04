@@ -188,7 +188,7 @@ const setTabBadgeText = (tabId, text) => new Promise((resolve) => {
         return;
     }
     chrome.action.setBadgeText({ tabId: tabId, text: text }, () => {
-        if (chrome.runtime.lastError) console.error("setTabBadgeText error:", chrome.runtime.lastError.message);
+        if (chrome.runtime.lastError && !chrome.runtime.lastError.message.includes("No tab with id")) console.error("setTabBadgeText error:", chrome.runtime.lastError.message);
         resolve();
     });
 });
@@ -199,7 +199,7 @@ const setWindowBadgeText = (windowId, text) => browser.action.setBadgeText({ win
 // eslint-disable-next-line no-unused-vars
 const setTabBadgeBackgroundColor = (tabId, color) => new Promise((resolve) => {
     chrome.action.setBadgeBackgroundColor({ tabId: tabId, color: color }, () => {
-        if (chrome.runtime.lastError) console.error("setTabBadgeBackgroundColor error:", chrome.runtime.lastError.message);
+        if (chrome.runtime.lastError && !chrome.runtime.lastError.message.includes("No tab with id")) console.error("setTabBadgeBackgroundColor error:", chrome.runtime.lastError.message);
         resolve();
     });
 });
@@ -315,59 +315,55 @@ const areSameArrays = (array1, array2) => {
 const escapeHTML = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;');
 
 // eslint-disable-next-line no-unused-vars
-const appendDuplicateTabRows = (tbody, duplicateTabs, activeWindowId) => {
+const buildDuplicateTabRows = (duplicateTabs, activeWindowId) => {
+    const fragment = document.createDocumentFragment();
     duplicateTabs.forEach(duplicateTab => {
         const tr = document.createElement("tr");
-        tr.setAttribute("tabId", String(parseInt(duplicateTab.id, 10)));
-        tr.setAttribute("windowId", String(parseInt(duplicateTab.windowId, 10)));
+        tr.setAttribute("tabId", parseInt(duplicateTab.id, 10));
+        tr.setAttribute("windowId", parseInt(duplicateTab.windowId, 10));
 
-        const tdTabIcon = document.createElement("td");
-        tdTabIcon.className = "td-tab-icon";
-
+        const tdIcon = document.createElement("td");
+        tdIcon.className = "td-tab-icon";
         const img = document.createElement("img");
         img.src = duplicateTab.icon || "../images/default-favicon.png";
         img.alt = "";
-        tdTabIcon.appendChild(img);
+        tdIcon.appendChild(img);
 
-        const tdTabTitle = document.createElement("td");
-        tdTabTitle.className = "td-tab-title";
-        tdTabTitle.title = duplicateTab.url || "";
-
+        const tdTitle = document.createElement("td");
+        tdTitle.className = "td-tab-title";
+        tdTitle.title = duplicateTab.url;
         if (duplicateTab.containerColor) {
-            tdTabTitle.style.textDecoration = "underline";
-            tdTabTitle.style.textDecorationColor = duplicateTab.containerColor;
+            tdTitle.style.textDecoration = "underline";
+            tdTitle.style.textDecorationColor = duplicateTab.containerColor;
         }
-
         if (duplicateTab.whitelisted) {
             const badge = document.createElement("span");
             badge.className = "whitelist-badge fa-solid fa-list-check";
             badge.title = chrome.i18n.getMessage("whitelistedTab");
-            tdTabTitle.appendChild(badge);
-            tdTabTitle.appendChild(document.createTextNode(" "));
+            tdTitle.appendChild(badge);
+            tdTitle.appendChild(document.createTextNode(" "));
         }
-
         if (duplicateTab.windowId === activeWindowId) {
-            tdTabTitle.appendChild(document.createTextNode(duplicateTab.title || ""));
+            tdTitle.appendChild(document.createTextNode(duplicateTab.title));
         } else {
             const em = document.createElement("em");
-            em.textContent = duplicateTab.title || "";
-            tdTabTitle.appendChild(em);
+            em.textContent = duplicateTab.title;
+            tdTitle.appendChild(em);
         }
 
-        const tdCloseButton = document.createElement("td");
-        tdCloseButton.className = "td-close-button";
+        const tdClose = document.createElement("td");
+        tdClose.className = "td-close-button";
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btn-tab-close";
+        btn.setAttribute("aria-label", "Close");
+        btn.textContent = "×";
+        tdClose.appendChild(btn);
 
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "btn-tab-close";
-        button.setAttribute("aria-label", "Close");
-        button.textContent = "×";
-        tdCloseButton.appendChild(button);
-
-        tr.appendChild(tdTabIcon);
-        tr.appendChild(tdTabTitle);
-        tr.appendChild(tdCloseButton);
-
-        tbody.appendChild(tr);
+        tr.appendChild(tdIcon);
+        tr.appendChild(tdTitle);
+        tr.appendChild(tdClose);
+        fragment.appendChild(tr);
     });
+    return fragment;
 };

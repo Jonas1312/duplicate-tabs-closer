@@ -7,6 +7,7 @@ const setBadgeIcon = () => {
 };
 
 const setBadge = async (windowId, activeTabId) => {
+	if (monitoringPaused) return;
 	let nbDuplicateTabs = tabsInfo.getNbDuplicateTabs(windowId);
 	if (nbDuplicateTabs === "0" && !options.showBadgeIfNoDuplicateTabs) nbDuplicateTabs = "";
 	const backgroundColor = (nbDuplicateTabs !== "0") ? options.badgeColorDuplicateTabs : options.badgeColorNoDuplicateTabs;
@@ -41,7 +42,7 @@ const updateBadgeValue = async (nbDuplicateTabs, windowId) => {
 	const prevCount = tabsInfo.hasNbDuplicateTabs(windowId) ? parseInt(tabsInfo.getNbDuplicateTabs(windowId)) : 0;
 	tabsInfo.setNbDuplicateTabs(windowId, nbDuplicateTabs);
 	setBadge(windowId);
-	if (options.openPopupOnDuplicateDetected && nbDuplicateTabs > prevCount && !(await isPanelOptionOpen())) {
+	if (options.openPopupOnDuplicateDetected && nbDuplicateTabs > prevCount && !(await isPopupOpen())) {
 		chrome.storage.session.set({ autoOpenedPopup: true }).then(() => {
 			chrome.action.openPopup().catch(() => {});
 		});
@@ -64,4 +65,23 @@ const updateBadgesValue = async (duplicateTabsGroups, windowId) => {
 const updateBadgeStyle = async () => {
 	const windows = await getWindows();
 	windows.forEach(window => setBadge(window.id));
+};
+
+// eslint-disable-next-line no-unused-vars
+const setPausedBadge = async () => {
+	const PAUSED_COLOR = "#888888";
+	const PAUSED_TEXT = "⏸";
+	if (environment.isFirefox) {
+		const windows = await getWindows();
+		if (windows) windows.forEach(w => {
+			setWindowBadgeText(w.id, PAUSED_TEXT);
+			setWindowBadgeBackgroundColor(w.id, PAUSED_COLOR);
+		});
+	} else {
+		const tabs = await getTabs({});
+		if (tabs) tabs.forEach(tab => {
+			setTabBadgeText(tab.id, PAUSED_TEXT);
+			setTabBadgeBackgroundColor(tab.id, PAUSED_COLOR);
+		});
+	}
 };
